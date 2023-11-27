@@ -4,7 +4,7 @@ class_name DominoWorld
 extends Node2D
 
 export(PackedScene) var Domino
-const FootprintTile = preload("res://Scripts/FootprintTile.gd")
+const FootprintTile = preload("res://FootprintTile.gd")
 var footprint_tile_ring = null
 
 var sorted_players = []
@@ -36,7 +36,7 @@ func _ready() -> void:
 #  Sets up and resolves players and their resulting nodes
 func _init_players() -> void:
 	# initialize footprint tile ring
-	footprint_tile_ring = preload("res://Scripts/FootprintTileRing.gd").new(self)
+	footprint_tile_ring = preload("res://FootprintTileRing.gd").new(self)
 	footprint_tile_ring.position = $Board.position
 	add_child(footprint_tile_ring)
 	
@@ -428,7 +428,7 @@ remote func next_round():
 		domino.queue_free()
 
 	# if we've completed round 5, end game
-	if center_num >= 9:
+	if center_num >= 5:
 		$Turn.text = "Game\nOver!"
 		$End.text = "Winner: " + determine_winner() + "\n(Hover over faces to see stats.)"
 		$End.visible = true
@@ -473,7 +473,7 @@ func _on_Next_pressed() -> void:
 			rpc_id(p, "next_round")
 
 	# get new dominos from deck
-	if center_num <= 9:
+	if center_num <= 5:
 		setup_dominos()
 		$NextSound.playing = true
 

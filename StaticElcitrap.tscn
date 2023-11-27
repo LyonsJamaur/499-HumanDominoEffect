@@ -1,16 +1,11 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://sprites/elcitrap_b.png" type="Texture" id=1]
-[ext_resource path="res://Scripts/CapturedElcitrap.gd" type="Script" id=2]
+[ext_resource path="res://StaticElcitrap.gd" type="Script" id=2]
 [ext_resource path="res://sprites/elcitrap_r.png" type="Texture" id=3]
 [ext_resource path="res://sprites/elcitrap_g.png" type="Texture" id=4]
 [ext_resource path="res://sprites/elcitrap.png" type="Texture" id=5]
 [ext_resource path="res://Nunito/Nunito-Regular.ttf" type="DynamicFontData" id=6]
-[ext_resource path="res://sprites/science_icon.png" type="Texture" id=7]
-[ext_resource path="res://sprites/humanities_icon.png" type="Texture" id=8]
-[ext_resource path="res://sprites/arts_icon.png" type="Texture" id=9]
-[ext_resource path="res://audio/effects/back.wav" type="AudioStream" id=10]
-[ext_resource path="res://audio/effects/next.wav" type="AudioStream" id=11]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -40,25 +35,7 @@ font_data = ExtResource( 6 )
 texture = ExtResource( 5 )
 region_rect = Rect2( 0, 0, 1200, 1200 )
 
-[sub_resource type="SpriteFrames" id=5]
-animations = [ {
-"frames": [ ExtResource( 8 ) ],
-"loop": true,
-"name": "humanities",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 7 ) ],
-"loop": true,
-"name": "science",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 9 ) ],
-"loop": true,
-"name": "arts",
-"speed": 5.0
-} ]
-
-[node name="CapturedElcitrap" type="RigidBody2D"]
+[node name="StaticElcitrap" type="RigidBody2D"]
 input_pickable = true
 collision_layer = 2
 gravity_scale = 0.0
@@ -86,7 +63,6 @@ __meta__ = {
 }
 
 [node name="PopupDialog" type="PopupDialog" parent="."]
-visible = true
 margin_left = 324.0
 margin_top = 112.0
 margin_right = 384.0
@@ -98,20 +74,11 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="PopupDialog"]
-self_modulate = Color( 1, 1, 1, 0.356863 )
-position = Vector2( 29.8628, 29.457 )
-scale = Vector2( 0.07, 0.07 )
-frames = SubResource( 5 )
-animation = "science"
-
-[node name="Select" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 11 )
-volume_db = -11.0
-
-[node name="Deselect" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 10 )
-volume_db = -11.0
-[connection signal="input_event" from="." to="." method="_on_CapturedElcitrap_input_event"]
-[connection signal="mouse_entered" from="." to="." method="_on_CapturedElcitrap_mouse_entered"]
-[connection signal="mouse_exited" from="." to="." method="_on_CapturedElcitrap_mouse_exited"]
+[node name="Label" type="Label" parent="PopupDialog"]
+margin_left = 9.73785
+margin_top = 9.08866
+margin_right = 49.7379
+margin_bottom = 23.0887
+__meta__ = {
+"_edit_use_anchors_": false
+}

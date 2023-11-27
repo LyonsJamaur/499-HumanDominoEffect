@@ -1,5 +1,5 @@
 extends Node2D
-const FootprintTile = preload("res://Scripts/FootprintTile.gd")
+const FootprintTile = preload("res://FootprintTile.gd")
 
 # Declare member variables here. Examples:
 # var a = 2
@@ -39,15 +39,13 @@ func _init(parent = null) -> void:
 		i += 1
 
 func show_tile(footprint_num: int, round_num: int) -> void:
-	if round_num <= 5:
-		get_child(footprint_num + gamestate.tiles_per_round * round_num).visible = true
+	get_child(footprint_num + gamestate.tiles_per_round * round_num).visible = true
 	
 func show_round(round_num: int) -> void:
 	var i = 0
-	if round_num <=6:
-		while i < gamestate.tiles_per_round:
-			self.show_tile(i, round_num)
-			i += 1
+	while i < gamestate.tiles_per_round:
+		self.show_tile(i, round_num)
+		i += 1
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
